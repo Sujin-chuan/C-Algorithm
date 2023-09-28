@@ -1,2 +1,2 @@
 # c-language
-some easy codes desighed by a beginner
+c语言练习题
