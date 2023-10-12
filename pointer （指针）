@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main()
+{	//声明指针
+	int num = 0;
+	int* pi = &num;
+	printf("address of num:%d pi:%d\n", &num,&pi);//整型打印
+	printf("address of num:%x pi:%x\n", &num,&pi);//将值显示为小写十六进制，并不完整
+	printf("address of num:%p pi:%p\n", &num, &pi);//将值显示为大写十六进制,并展示完整16位
+	printf("address of num:%o pi:%o\n", &num, &pi);//将值显示为八位数
+	return 0; 
+
+}
+int main()
+{	
+	int num = 5;
+	int* pi = &num;
+	printf("%p\n", *pi);//以指针变量的内容作为地址访问指向对象的内容（解引指针）
+	*pi = 200;
+	printf("%p\n", *pi);//对指向的变量进行赋值
+	return 0;
+}
+int main()
+{	//NULL被赋值给指针意味者指针不指向任何东西。
+	//null指针和未初始化的指针不同，未初始化的指针可能包含任何值，而包含null
+	//的指针不会引用内存中的任何地址
+int* pi = NULL;
+printf("%p", pi);
+return 0;
+ }
