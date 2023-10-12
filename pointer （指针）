@@ -23,7 +23,7 @@ int main()
 {	//NULL被赋值给指针意味者指针不指向任何东西。
 	//null指针和未初始化的指针不同，未初始化的指针可能包含任何值，而包含null
 	//的指针不会引用内存中的任何地址
-int* pi = NULL;
-printf("%p", pi);
-return 0;
+	int* pi = NULL;
+	printf("%p", pi);
+	return 0;
  }
