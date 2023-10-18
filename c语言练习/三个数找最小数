@@ -1,0 +1,27 @@
+目标：给定三个整数 a, b 和 c，请编程从中找出第二小的数并输出。
+思路：先利用打擂台的方式找到最大的数，然后比较剩下的两个数的大小。
+#include <stdio.h>
+int main()
+{   int a,b,c,temp;//temp作临时变量，用于交换两个数。
+    scanf("%d %d %d",&a,&b,&c);
+    if(a>b)
+    {
+      temp = a;
+      a   = b;
+      b   = temp;
+    }//a<b
+    if(b>c)
+    {  temp = b;
+       b = a;
+       a = temp;
+    }//b<c
+    if(a>b)
+    {
+        temp = a;
+        a = b;
+        b = temp;
+    }//a<b
+    printf("%d",b);
+      
+    return 0;
+}
