@@ -12,8 +12,8 @@ int main()
     }//a<b
     if(b>c)
     {  temp = b;
-       b = a;
-       a = temp;
+       b = c;
+       c = temp;
     }//b<c
     if(a>b)
     {
