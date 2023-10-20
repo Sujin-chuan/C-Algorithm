@@ -1,3 +1,4 @@
+事实上，我们必须先声明一个函数，然后定义，然后再调用，下面的内容仅展示核心思想。
 //2.1
 #include <stdio.h>
 int main()
@@ -30,15 +31,86 @@ int main()
 }//没有发生交换的原因是num1和num2保存的只是实参的副本。修改num1，实参n1不会变化。修改形参不会改变实参。
 
 //2.3
-int main()
-{   
-    return 0 ;
+void passingAddressofConstant(const int* num1, int* num2)
+{
+	*num2=*num1;
 }
+int main()
+{   const int limit = 100;
+    int result  = 5;
+	passingAddressofConstant(&limit,&result);
+    return 0 ;
+}//如果不希望数据被修改，就要传递给指向常量的指针。在函数内，我们不能修改通过指向常量的指针传进来的值。
 
+//2.4返回指针
+#include <stido.h>
+#include <stdlib.h>
+int* allocateArray(int size,int value)
 
+int* allocateArray(int size,int value)
+{
+	int* arr = (int*)malloc(size*sizeof(int));
+	for( i=0; i<size; i++)
+	{
+		arr[i] = value;
+	}
+	return arr;
+}
+int main()
+{	int* vector = allocateArray(5,0);
+	for(int i=0; i<5; i++)
+	{
+		printf("%d\n",vector[i]);
+	}
+	free(vector);
+	return 0 ;
+}//函数返回指针时可能存在几个潜在的问题：返回无效地址，返回局部变量的指针，返回未初始化的指针，返回指针但未释放内存。
 
+//2.5局部数据指针
 
+int* allocateArray(int size,int value)
+{
+	int arr[size] ;
+	for( i=0; i<size; i++)
+	{
+		arr[i] = value;
+	}
+	return arr;
+}
+int main()
+{	int* vector = allocateArray(5,0);
+	for(int i=0; i<5; i++)
+	{
+		printf("%d\n",vector[i]);
+	}
+	return 0 ;
+}//如果返回局部变量的指针可能导致数组数据被覆写！
 
+improve：把arr变量声明为static类型，这样变量的作用域限制在函数内部，但是分配在栈帧外面，避免其他函数覆写变量值。
+但是每次调用allocatearry函数都会重复利用这个数组。这样相当于每次都把上次调用的结果覆盖掉，此外，静态数组必须声明为固定长度，
+这样会限制函数处理变长数组的能力。
+
+//2.6传递空指针
+将指针传递给函数时，使用之前判断它是否为空是个好习惯
+if(arr != NULL){	statement;
+}
+//2.7传递指针的指针
+void allocateArray(int** arr, int size, int value)
+{
+	*arr = (int*)malloc(size*sizeof(int));
+	if(arr!= NULL)
+	{
+		for(int i=0; i<size; i++)
+		{
+			*(*arr+i) = value;
+		}
+	}
+}
+int main()
+{	int* vector = NULL;
+	allocateArray(&vector,5,45);
+	return 0;
+}
 
 
 
