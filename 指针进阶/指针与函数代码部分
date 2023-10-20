@@ -1,1 +1,49 @@
+//2.1
+#include <stdio.h>
+int main()
+{	int n1 = 5;
+	int n2 = 10;
+	swapWithPointers(&n1,&n2);
+	return 0 ;	 
+}
+void swapWithPointers(int* pnum1, int* pnum2)
+{
+	int temp;
+	temp = *pnum1;
+    *pnum1 = *pnum2;
+    *pnum2 = temp;
+}
+
+//2.2
+//需要注意的是，如果不使用指针传递数据，那么交换就不会发生。
+void swap(int num1, int num2)
+{   int temp;
+    temp = num1;
+    num1 = num2;
+    num2 = temp;
+}
+int main()
+{   int n1  = 5;
+    int n2 = 10;
+    swap(n1,n2);
+    return 0 ;
+}//没有发生交换的原因是num1和num2保存的只是实参的副本。修改num1，实参n1不会变化。修改形参不会改变实参。
+
+//2.3
+int main()
+{   
+    return 0 ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
