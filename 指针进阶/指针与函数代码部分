@@ -112,6 +112,83 @@ int main()
 	return 0;
 }
 
+//3.1 3.2 声明函数指针、使用函数指针
+int (*foo)(int);//表明这是一个函数指针，这个函数的输入、输出都是int
+int square(int n)
+{	
+	return n*n;
+}
+
+int main()
+{	int s = 5;
+	foo = square;
+	printf("%d is square of %d",foo(s),s);
+	return 0 ;
+}
+
+//3.3 传递函数指针
+int add(int n1, int n2)
+{
+	return n1+n2;
+}
+
+int sub(int n1, int n2)
+{
+	return  n1-n2;
+}
+
+typedef int (*foo)(int,int);//foo:函数指针类型
+int compute(foo operation, int n1, int n2)
+{
+	return(operation(n1,n2));
+}
+
+int main()
+{
+	int a = compute(add,5,6);
+	int b = compute(sub,5,6);
+	printf("%d\n%d",a,b);
+}
+
+//3.4 返回函数指针
+
+foo select(char opcode)
+{
+	switch(opcode){
+		case '+':
+			return add;
+		case '-':
+			return sub;
+	}
+}
+
+int evaluate(char opcode, int num1, int num2)
+{	
+	foo operation = select(opcode);
+	return operation(num1, num2);
+}
+
+int main()
+{
+printf("%d\n",evaluate('+',5,6));
+printf("%d\n",evaluate('-',5,6));
+}
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
 
 
 
