@@ -174,10 +174,29 @@ printf("%d\n",evaluate('+',5,6));
 printf("%d\n",evaluate('-',5,6));
 }
 
+//3.5 使用函数指针数组
+/* 函数指针数组可以根据某些条件选择要执行的函数*/
+typedef int(*operation)(int, int);
+operation operations[128] = {NULL};
+//等价于 int (*operations[128])(int, int) = {NULL};
+void initializeOpertionsarray{
+	operations['+'] = add;
+	operations['-'] = subtract;
+}
+int evaluateArray(char opcode, int n1, int n2)
+{	operation operation;
+	operation = operations[opcode]
+	return operation(n1, n2)
+}
 
+//测试函数
+initializeOperationsarray();
+printf("%d\n",evaluateArray('+',5,6));
+printf("%d\n",evaluateArray('-',5,6));
 
-
-
+//3.6 比较函数指针
+相等和不相等操作符来比较函数指针
+//3.7 略
 
 
 		
