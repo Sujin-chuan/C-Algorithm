@@ -1,4 +1,5 @@
 1、malloc函数
+函数原型：void* malloc(size_t)
 操作对象是堆上分配的内存，malloc函数参数指定分配的字节数，如果成功，它会返回堆上分配的内存的指针。如果失败返回空指针。
 
 只展示main函数部分代码
@@ -21,4 +22,5 @@ void* calloc(size_t numElements, size_t elementSize);
 执行calloc可能比执行malloc函数慢。
 
 3、realloc函数
+函数原型：void* realloc(void *ptr,size_t size);
 
