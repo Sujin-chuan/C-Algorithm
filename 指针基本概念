@@ -56,3 +56,33 @@ int main()
 	printf("%c %c %c", *p0, *p1, *p2);
 	return 0;
 }
+C语言的功能强大且丰富，表现在const关键字与指针的结合使用上，对不同的问题，它提供不同的保护，我们可以看到如何使用这种技术阻止函数的
+使用者修改函数的参数。
+1 指向常量的指针
+2 指向非常量的常量指针
+3 指向常量的常量指针
+4 指向“指向常量的常量指针”的指针
+//1 把指针定义为指向常量，这意味者不能通过的指针修改它所引用的值。
+例如
+int num = 5;
+const int limit = 500 ;
+int* pi;//指向整数
+const int *pci;//指向整数常量
+pi = &num;
+pci = &limit;//这意味者pci引用的值是只读的
+pci = &num ;//指针可以存放int型整数，但是不同用pci来修改
+
+//2
+int *const cpi =&num;//cpi必须被初始化为指向非常量变量。cpi是不可修改的，cpi指向的数据可以修改。
+
+//3
+const int * const cpci = &limit;//指向常量的指针很少派上用场，因为这种指针本身不可修改，它指向的数据也不能通过它来修改。
+必须初始化
+
+//4
+const int limit  = 500;
+const int * const cpci = &limit;
+const int* const* pcpci = &cpci;
+从右往左读可以帮助我们理解这个声明：pcpci是指针变量名，它指向const，*const是常量指针，它指向const int。
+printf("%d\n",*cpci);
+printf("%d\n",**pcpci);//他们的结果应该都是500.
